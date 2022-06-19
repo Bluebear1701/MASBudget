@@ -57,7 +57,7 @@ function uploadTransaction() {
                 headers: {
                     Accept: 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
-                }
+                },
             })
                 .then(response => response.json())
                 .then(serverResponse => {
@@ -65,13 +65,8 @@ function uploadTransaction() {
                         throw new Error(serverResponse);
                     }
 
-                    // open one more transaction
-                    const transaction = db.transaction(['new_transaction'], 'readwrite');
-
-                    // access the new_transaction object store
-                    const budgetObjectStore = transaction.objectStore('new_transaction');
-
-                    // clear all items in your store
+                    const transaction = db.transaction(['new_transaction'], 'readwrite');                    
+                    const budgetObjectStore = transaction.objectStore('new_transaction');                    
                     budgetObjectStore.clear();
 
                     alert('All saved transactions has been submitted!');
