@@ -16,10 +16,12 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(MONGODB_URI,
+mongoose.connect(MONGODB_URI ||'mongodb://localhost',
 {
   useNewUrlParser: true,
-    useUnifiedTopology: true,  
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
 });
 
 // routes
